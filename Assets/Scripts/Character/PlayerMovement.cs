@@ -37,9 +37,11 @@ public class PlayerMovement : MonoBehaviour
     public void Crouch(InputAction.CallbackContext ctx) {
         if (ctx.started) {
             _isCrouching = true;
+            transform.localScale = new Vector3(1, 0.5f, 1);
         }
         if(ctx.canceled) {
             _isCrouching = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
