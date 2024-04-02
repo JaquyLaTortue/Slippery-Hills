@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _speed = 100f;
     [SerializeField]
+    private float _jumpForce = 5f;
+    [SerializeField]
     private bool _isCrouching = false;
     private Rigidbody _rigidbody;
     private Vector3 _moveDirection;
@@ -30,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx) {
         if (ctx.started) {
-            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         }
     }
 
