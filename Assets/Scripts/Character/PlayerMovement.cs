@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     [field:SerializeField]
     public bool IsSliding { get; private set; } = false;
     private bool _canJump = true;
-    public Vector3 MoveDirection;
-
+    private Vector3 MoveDirection;
     private Rigidbody _rigidbody;
-    [field:SerializeField]
-    public PhysicMaterial PhysicMat { get; private set; }
+    private PhysicMaterial PhysicMat;
+    [SerializeField]
+    private Animator _animator;
 
     private void Start() {
         _rigidbody = GetComponent<Rigidbody>();
@@ -26,7 +27,14 @@ public class PlayerMovement : MonoBehaviour
             if (!IsSliding) {
                 _rigidbody.velocity = new Vector3(MoveDirection.x * _maxSpeed * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
             }  
-        } 
+        }
+
+        if(_rigidbody.velocity.magnitude > 0) {
+            _animator.SetBool("IsRunning", true);
+        }
+        else {
+            _animator.SetBool("IsRunning", false);
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx) {
@@ -37,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (!ctx.started || !_canJump) return;
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
+        _animator.SetTrigger("IsJumping");
     }
 
     public void Slide(InputAction.CallbackContext ctx) {
@@ -45,12 +54,14 @@ public class PlayerMovement : MonoBehaviour
             PhysicMat.dynamicFriction = 1f;
             PhysicMat.staticFriction = 1f;
             PhysicMat.frictionCombine = PhysicMaterialCombine.Minimum;
+            _animator.SetBool("IsSliding", true);
         }
         if (ctx.canceled) {
             IsSliding = false;
             PhysicMat.dynamicFriction = 2f;
             PhysicMat.staticFriction = 2f;
             PhysicMat.frictionCombine = PhysicMaterialCombine.Average;
+            _animator.SetBool("IsSliding", false);
         }
     }
 
