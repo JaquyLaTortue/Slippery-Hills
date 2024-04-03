@@ -17,7 +17,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        _rigidbody.velocity = new Vector3(_moveDirection.x * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
+        if (_moveDirection!=Vector3.zero)
+        {
+            _rigidbody.velocity = new Vector3(_moveDirection.x * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx) {
