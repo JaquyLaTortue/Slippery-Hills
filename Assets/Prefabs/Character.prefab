@@ -64,13 +64,6 @@ MonoBehaviour:
     GateFit: 2
     FocusDistance: 10
     m_SensorSize: {x: 1, y: 1}
-    Iso: 200
-    ShutterSpeed: 0.005
-    Aperture: 16
-    BladeCount: 5
-    Curvature: {x: 2, y: 11}
-    BarrelClipping: 0.25
-    Anamorphism: 0
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -184,7 +177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -793,9 +786,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8445728811253753032}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4360826700268765763}
     - targetCorrespondingSourceObject: {fileID: 5332809968238436118, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2158983913909540840}
@@ -812,7 +802,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2525104717723293083}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a5daadea6a5bd124d910589e25661e5e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -836,7 +826,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2525104717723293083}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -853,7 +843,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &490869486038175946
 MonoBehaviour:
@@ -900,7 +890,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8445728811253753032}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Crouch
+        m_MethodName: Slide
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -945,30 +935,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdb381c068ff8344bd1dc03af53185b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 300
-  _jumpForce: 10
-  <IsCrouching>k__BackingField: 0
-  IsSliding: 0
-  IsGrounded: 0
+  _maxSpeed: 400
+  _jumpForce: 600
+  <IsSliding>k__BackingField: 0
   MoveDirection: {x: 0, y: 0, z: 0}
-  playerHeight: 1.8
-  maxSlopeAngle: 45
---- !u!114 &4360826700268765763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2525104717723293083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae84f0d56dd5c7b41acdf6cf3afc8804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObj: {fileID: 2900645746346757921}
-  maxSlideTime: 0.75
-  slideForce: 200
-  slideYScale: 0.5
+  <PhysicMat>k__BackingField: {fileID: 0}
 --- !u!4 &2900645746346757921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
