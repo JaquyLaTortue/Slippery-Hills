@@ -81,7 +81,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.5
+    - _Alpha: 0.2
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -99,8 +99,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MaskContrast: 1.18
-    - _MaskSize: 0.8
+    - _MaskContrast: 2
+    - _MaskSize: 0.5
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -109,6 +109,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpikeNess: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0

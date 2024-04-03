@@ -14,6 +14,9 @@
         },
         {
             "m_Id": "ed6fa96118a84e7a800b2535165c95c6"
+        },
+        {
+            "m_Id": "419efa08974d436bba241acf49df0f5d"
         }
     ],
     "m_Keywords": [],
@@ -104,6 +107,9 @@
         },
         {
             "m_Id": "3b61ff8f070c4a56938a9aa9274f233a"
+        },
+        {
+            "m_Id": "69e7eb0895ed470da1c26e34b4924c35"
         }
     ],
     "m_GroupDatas": [
@@ -293,6 +299,20 @@
                     "m_Id": "b25476b9d9084c91a6bef2a5b47cfa49"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "69e7eb0895ed470da1c26e34b4924c35"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "227b0072bc1d497fae026670e237978f"
+                },
+                "m_SlotId": 3
             }
         },
         {
@@ -1179,6 +1199,21 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "2ee47eaaf8ca4a88a05bec6623f52fd2",
+    "m_Id": 0,
+    "m_DisplayName": "SpikeNess",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "3113de80b5784ff6a8d770f116b20e8e",
     "m_Id": 1,
@@ -1501,6 +1536,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "419efa08974d436bba241acf49df0f5d",
+    "m_Guid": {
+        "m_GuidSerialized": "cb07a4fe-84fb-4614-a250-146d4a20e022"
+    },
+    "m_Name": "SpikeNess",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "SpikeNess",
+    "m_DefaultReferenceName": "_SpikeNess",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.0,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 5.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "458e2bb8909747da90ade6b06f6c6531",
@@ -1526,6 +1589,9 @@
         },
         {
             "m_Id": "ed6fa96118a84e7a800b2535165c95c6"
+        },
+        {
+            "m_Id": "419efa08974d436bba241acf49df0f5d"
         },
         {
             "m_Id": "a82e37a24c614e898ea9d6f9bf700dd8"
@@ -1945,6 +2011,42 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "69e7eb0895ed470da1c26e34b4924c35",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1442.0001220703125,
+            "y": 308.0,
+            "width": 131.333251953125,
+            "height": 36.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "2ee47eaaf8ca4a88a05bec6623f52fd2"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "419efa08974d436bba241acf49df0f5d"
     }
 }
 
@@ -3015,7 +3117,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "LengthScale",
     "m_StageCapability": 3,
-    "m_Value": 1.0,
+    "m_Value": 2.890000104904175,
     "m_DefaultValue": 1.0,
     "m_Labels": []
 }

@@ -328,9 +328,17 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -2049929814205202405, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2049929814205202405, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4a23231986752c84db47a3ed0e6cd87c, type: 2}
+    - target: {fileID: -2049929814205202405, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46798663fd0c4b248b36a4aa95a3a2ee, type: 2}
     - target: {fileID: -1933314137475268787, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 35.720814
