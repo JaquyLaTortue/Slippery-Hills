@@ -39,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 1.5f)) {
             if (hit.collider.CompareTag("Ground")) {
                 newRot = hit.transform.rotation;
-                Debug.Log(newRot.eulerAngles);
                 if (transform.rotation.eulerAngles.y == 90) {
                     transform.rotation = Quaternion.Euler(-newRot.eulerAngles.z, transform.eulerAngles.y, transform.eulerAngles.z);
                 }
