@@ -34,4 +34,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _playerMain.Movement.ResetSliding();
     }
+
+    public void ResetFrictions()
+    {
+        _playerMain.Movement.ResetFrictions();
+    }
 }

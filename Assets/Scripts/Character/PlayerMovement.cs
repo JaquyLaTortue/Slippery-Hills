@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
         if (!ctx.started || !_canJump) return;
         _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
+        PhysicMat.frictionCombine = PhysicMaterialCombine.Minimum;
         UpdateJumpAnimation?.Invoke();
     }
 
@@ -130,9 +131,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (ctx.canceled)
         {
-            PhysicMat.dynamicFriction = 2f;
-            PhysicMat.staticFriction = 2f;
-            PhysicMat.frictionCombine = PhysicMaterialCombine.Average;
             UpdateSlideAnimation?.Invoke(false);
         }
     }
@@ -148,5 +146,12 @@ public class PlayerMovement : MonoBehaviour
     public void ResetSliding()
     {
         IsSliding = false;
+    }
+
+    public void ResetFrictions()
+    {
+        PhysicMat.dynamicFriction = 2f;
+        PhysicMat.staticFriction = 2f;
+        PhysicMat.frictionCombine = PhysicMaterialCombine.Average;
     }
 }

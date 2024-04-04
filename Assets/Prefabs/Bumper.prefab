@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852126726462796142}
+  - component: {fileID: 6095932151803048884}
   - component: {fileID: 2050149227230961716}
   - component: {fileID: 4072167836647677037}
   - component: {fileID: 8748921649627386875}
-  - component: {fileID: 6095932151803048884}
   m_Layer: 0
   m_Name: Bumper
   m_TagString: Untagged
@@ -30,11 +30,24 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.924, y: 0.105, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.1, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.9, y: 0.06, z: 0.9}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6095932151803048884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911131816670746288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a88caf148978c409b1e4ea045d6d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bumperForce: 3000
 --- !u!33 &2050149227230961716
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -108,15 +121,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6095932151803048884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8911131816670746288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a88caf148978c409b1e4ea045d6d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
