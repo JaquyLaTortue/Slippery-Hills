@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class EnnemyMain : MonoBehaviour
+public class EnemyMain : MonoBehaviour
 {
     [field: SerializeField]
-    public EnnemyMovement _ennemyMovement { get; private set; }
+    public EnemyMovement _enemyMovement { get; private set; }
 
     [field: SerializeField]
-    public EnnemyDeath _ennemyDeath { get; private set; }
+    public EnemyDeath _ennemyDeath { get; private set; }
 
     [field: SerializeField]
     public CollisionManager _collisionManager { get; private set; }
