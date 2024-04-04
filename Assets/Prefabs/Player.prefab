@@ -929,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 1.5, z: 0}
   m_LookaheadTime: 0.1
-  m_LookaheadSmoothing: 5
+  m_LookaheadSmoothing: 2
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
   m_YDamping: 1
@@ -2133,6 +2133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMain: {fileID: 8543504971591666345}
   _trailRenderer: {fileID: 1695250968776222078}
+  _trailMaxWidth: 0.75
+  _speedVFX: {fileID: 0}
+  _camera: {fileID: 5057665034605673515}
 --- !u!136 &7231353687824309948
 CapsuleCollider:
   m_ObjectHideFlags: 0
