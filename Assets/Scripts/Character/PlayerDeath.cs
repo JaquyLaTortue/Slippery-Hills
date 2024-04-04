@@ -14,7 +14,6 @@ public class PlayerDeath : MonoBehaviour
 
     private Collider _collider;
 
-    public event Action OnDeathZoneImpact;
 
     private void Start()
     {
@@ -26,7 +25,7 @@ public class PlayerDeath : MonoBehaviour
     public void Die()
     {
         Debug.Log("Player is dead");
-        _playerMain.Collision.enabled = false;
+        _playerMain.Movement.enabled = false;
         _rb.velocity = Vector3.zero;
 
         Sequence sequence = DOTween.Sequence();
@@ -38,12 +37,12 @@ public class PlayerDeath : MonoBehaviour
     private void DeathBump()
     {
         _rb.AddForce(Vector3.up * _deathBumpForce, ForceMode.Impulse);
-        _collider.enabled = false;
+        _collider.isTrigger = true;
     }
 
     public void DeathZoneImpact()
     {
-        OnDeathZoneImpact?.Invoke();
-        //Destroy(gameObject);
+        Debug.Log("Player is Destroyed");
+        Destroy(gameObject);
     }
 }

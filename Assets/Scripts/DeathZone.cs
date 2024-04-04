@@ -4,17 +4,21 @@ using UnityEngine;
 public class DeathZone : MonoBehaviour
 {
     public event Action OnDeathZoneEnemy;
+
     public event Action OnDeathZonePlayer;
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Player")) {
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Player"))
+        {
             OnDeathZonePlayer?.Invoke();
-            collision.gameObject.GetComponent<PlayerDeath>().Die();     // Change Die() to DeathZoneImpact()
+            collider.gameObject.GetComponent<PlayerDeath>().DeathZoneImpact();     // Change Die() to DeathZoneImpact()
         }
 
-        if (collision.gameObject.CompareTag("Enemy")) {
+        if (collider.gameObject.CompareTag("Enemy"))
+        {
             OnDeathZoneEnemy?.Invoke();
-            collision.gameObject.GetComponent<EnemyDeath>().Die();     // Change Die() to DeathZoneImpact()
+            collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();     // Change Die() to DeathZoneImpact()
         }
     }
 }

@@ -1,10 +1,14 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KillSoundManager : MonoBehaviour
 {
     [SerializeField]
     private PlayerMain _playerMain;
+
+    [SerializeField]
+    private DeathZone _deathZone;
 
     [SerializeField]
     private AudioSource _source;
@@ -22,6 +26,7 @@ public class KillSoundManager : MonoBehaviour
     private void Start()
     {
         _playerMain.Collision.OnEnemyKilled += PlayKillSound;
+        _deathZone.OnDeathZoneEnemy += PlayExplosionSound;
     }
 
     public void PlayKillSound()
