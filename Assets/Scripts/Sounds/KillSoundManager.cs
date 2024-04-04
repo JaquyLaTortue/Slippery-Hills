@@ -1,27 +1,47 @@
+using System.Collections;
 using UnityEngine;
 
 public class KillSoundManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource _killSound;
+    private PlayerMain _playerMain;
 
     [SerializeField]
-    private CollisionManager _collisionManager;
+    private AudioSource _source;
+
+    [SerializeField]
+    private AudioClip _killSound;
+
+    [SerializeField]
+    private AudioClip _explosionSound;
+
+    private int _count = 0;
+
+    private Coroutine _resetCount;
 
     private void Start()
     {
-        if (_collisionManager == null)
-        {
-            GetComponent<CollisionManager>().OnEnnemyKilled += PlayKillSound;
-        }
-        else
-        {
-            Debug.LogError("No CollisionManager found");
-        }
+        _playerMain.Collision.OnEnemyKilled += PlayKillSound;
     }
 
-    private void PlayKillSound()
+    public void PlayKillSound()
     {
-        _killSound.Play();
+        _count++;
+        _source.pitch = 1 + _count * 0.1f;
+        _resetCount = StartCoroutine(ResetCount());
+        Debug.Log("Kill sound played");
+        _source.PlayOneShot(_killSound);
+    }
+
+    public void PlayExplosionSound()
+    {
+        _source.PlayOneShot(_explosionSound);
+    }
+
+    private IEnumerator ResetCount()
+    {
+        yield return new WaitForSeconds(5f);
+        _count = 0;
+        _source.pitch = 1;
     }
 }

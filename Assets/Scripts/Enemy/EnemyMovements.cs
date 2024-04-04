@@ -1,10 +1,9 @@
-using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 
-public class EnnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
-    private EnnemyMain _ennemyMain;
+    private EnemyMain _ennemyMain;
 
     [SerializeField]
     private float _speed = 100f;
