@@ -12,7 +12,7 @@ public class CollisionManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ennemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             switch (_playerMain.Movement.IsSliding)
             {

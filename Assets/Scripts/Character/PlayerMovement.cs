@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,8 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _jumpForce = 5f;
 
-    [SerializeField]
-    private Animator _animator;
+    //[SerializeField]
+    //private Animator _animator;
 
     private bool _canJump = true;
 
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
 
     [field: SerializeField]
     public PlayerMain PlayerMain { get; private set; }
+
+    public event Action UpdateJumpAnimation;
+    public event Action<bool> UpdateRunningAnimation;
+    public event Action<bool> UpdateSlideAnimation;
 
 
     private void Awake()
@@ -85,17 +90,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsSliding)
             {
-                _animator.SetBool("IsRunning", false);
+                UpdateRunningAnimation?.Invoke(false);
             }
             else
             {
-                _animator.SetBool("IsRunning", true);
+                UpdateRunningAnimation?.Invoke(true);
             }
         }
         else
         {
-            _animator.SetBool("IsRunning", false);
-            _animator.SetBool("IsSliding", false);
+            UpdateRunningAnimation?.Invoke(false);
+
+            UpdateSlideAnimation?.Invoke(false);
         }
     }
 
@@ -109,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         if (!ctx.started || !_canJump) return;
         _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
-        _animator.SetTrigger("IsJumping");
+        UpdateJumpAnimation?.Invoke();
     }
 
     public void Slide(InputAction.CallbackContext ctx)
@@ -120,15 +126,14 @@ public class PlayerMovement : MonoBehaviour
             PhysicMat.dynamicFriction = 0.5f;
             PhysicMat.staticFriction = 0.5f;
             PhysicMat.frictionCombine = PhysicMaterialCombine.Minimum;
-            _animator.SetBool("IsSliding", true);
+            UpdateSlideAnimation?.Invoke(true);
         }
         if (ctx.canceled)
         {
-            IsSliding = false;
             PhysicMat.dynamicFriction = 2f;
             PhysicMat.staticFriction = 2f;
             PhysicMat.frictionCombine = PhysicMaterialCombine.Average;
-            _animator.SetBool("IsSliding", false);
+            UpdateSlideAnimation?.Invoke(false);
         }
     }
 
@@ -138,5 +143,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _canJump = true;
         }
+    }
+
+    public void ResetSliding()
+    {
+        IsSliding = false;
     }
 }
