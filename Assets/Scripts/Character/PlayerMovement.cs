@@ -1,7 +1,9 @@
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Class handling the player's movement
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
@@ -23,17 +25,50 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
+        // Move the player
         if(MoveDirection.x != 0) {
             if (!IsSliding) {
                 _rigidbody.velocity = new Vector3(MoveDirection.x * _maxSpeed * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
             }  
         }
 
-        if(_rigidbody.velocity.magnitude > 0) {
-            _animator.SetBool("IsRunning", true);
+        // Rotate the player according to the ground
+        Ray ray = new Ray(transform.position, -transform.up * 2);
+        RaycastHit hit;
+        Quaternion newRot = transform.rotation;
+        if (Physics.Raycast(ray, out hit, 1.5f)) {
+            if (hit.collider.CompareTag("Ground")) {
+                newRot = hit.transform.rotation;
+                Debug.Log(newRot.eulerAngles);
+                if (transform.rotation.eulerAngles.y == 90) {
+                    transform.rotation = Quaternion.Euler(-newRot.eulerAngles.z, transform.eulerAngles.y, transform.eulerAngles.z);
+                }
+                else {
+                    transform.rotation = Quaternion.Euler(newRot.eulerAngles.z, transform.eulerAngles.y, transform.eulerAngles.z);
+                }
+            }
+        }
+
+        // Rotate the player according to the direction
+        if (MoveDirection.x < 0) {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+        }
+        else if (MoveDirection.x > 0) {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 90, transform.eulerAngles.z);
+        }
+
+        // Controls the animations
+        if (_rigidbody.velocity.magnitude > 0) {
+            if (IsSliding) {
+                _animator.SetBool("IsRunning", false);
+            }
+            else {
+                _animator.SetBool("IsRunning", true);
+            }
         }
         else {
             _animator.SetBool("IsRunning", false);
+            _animator.SetBool("IsSliding", false);
         }
     }
 
@@ -43,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx) {
         if (!ctx.started || !_canJump) return;
-        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
         _animator.SetTrigger("IsJumping");
     }
@@ -51,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
     public void Slide(InputAction.CallbackContext ctx) {
         if (ctx.started) {
             IsSliding = true;
-            PhysicMat.dynamicFriction = 1f;
-            PhysicMat.staticFriction = 1f;
+            PhysicMat.dynamicFriction = 0.5f;
+            PhysicMat.staticFriction = 0.5f;
             PhysicMat.frictionCombine = PhysicMaterialCombine.Minimum;
             _animator.SetBool("IsSliding", true);
         }
@@ -65,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Allow the player to jump again when he touches the ground
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Ground")) {
             _canJump = true;
