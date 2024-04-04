@@ -1,30 +1,32 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField]
-    private CollisionManager _collisionManager;
+    private PlayerMain _playerMain;
 
     [SerializeField]
-    private PlayerMovement _playerMovement;
+    private float _deathBumpForce = 1000f;
 
     private Rigidbody _rb;
 
     private Collider _collider;
 
-    private float _deathBumpForce = 1000f;
+    public event Action OnDeathZoneImpact;
+
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = _playerMain.Movement._rigidbody;
         _collider = GetComponent<Collider>();
-        _collisionManager.OnPlayerDeath += Die;
+        _playerMain.Collision.OnPlayerDeath += Die;
     }
 
     public void Die()
     {
         Debug.Log("Player is dead");
-        _playerMovement.enabled = false;
+        _playerMain.Collision.enabled = false;
         _rb.velocity = Vector3.zero;
 
         Sequence sequence = DOTween.Sequence();
@@ -37,5 +39,11 @@ public class PlayerDeath : MonoBehaviour
     {
         _rb.AddForce(Vector3.up * _deathBumpForce, ForceMode.Impulse);
         _collider.enabled = false;
+    }
+
+    public void DeathZoneImpact()
+    {
+        OnDeathZoneImpact?.Invoke();
+        //Destroy(gameObject);
     }
 }

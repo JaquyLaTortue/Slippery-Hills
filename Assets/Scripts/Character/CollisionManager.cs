@@ -4,10 +4,7 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerMovement _playerMovement;
-
-    [SerializeField]
-    private LayerMask _enemyLayer;
+    private PlayerMain _playerMain;
 
     public event Action OnEnnemyKilled;
 
@@ -17,7 +14,7 @@ public class CollisionManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ennemy"))
         {
-            switch (_playerMovement.IsSliding)
+            switch (_playerMain.Movement.IsSliding)
             {
                 case true:
                     OnEnnemyKilled?.Invoke();
