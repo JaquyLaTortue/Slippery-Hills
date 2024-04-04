@@ -23,6 +23,7 @@ public class EnnemyDeath : MonoBehaviour
         _rb = _ennemyMain._ennemyMovement._rb;
     }
 
+    // To test the death of the enemy
     private void Update()
     {
         if (isDead && !alreadyDead)
@@ -34,7 +35,8 @@ public class EnnemyDeath : MonoBehaviour
 
     public void Die()
     {
-        _deathEffect.SetActive(true);
+        Debug.Log("Ennemy is dead");
+        //_deathEffect.SetActive(true);
         _rb.AddForce(Vector3.up * _bumpForce, ForceMode.Impulse);
         _ennemyMain._ennemyMovement._collider.enabled = false;
         DOTween.Sequence(_ennemyMain.transform.DORotate(new Vector3(0, 0, 180), 3f))
