@@ -43,6 +43,7 @@ public class SoundManager : MonoBehaviour
         _playerMain.Collision.OnPlayerDeath += StopSlideSound;
 
         _deathZone.OnDeathZoneEnemy += PlayExplosionSound;
+        _deathZone.OnDeathZonePlayer += PlayExplosionSound;
     }
 
     public void PlayKillSound()
