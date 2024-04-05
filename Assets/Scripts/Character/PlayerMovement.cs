@@ -103,6 +103,21 @@ public class PlayerMovement : MonoBehaviour
 
             UpdateSlideAnimation?.Invoke(false);
         }
+
+        // Controls gamepad vibrations
+        if (_rigidbody.velocity.magnitude > 0) {
+            if (IsSliding)
+            {
+                PlayerMain.GamepadShake(_rigidbody.velocity.magnitude / 100);
+            }
+            else
+            {
+                PlayerMain.StopGamepadShake();
+            }
+        }
+        else {
+            PlayerMain.StopGamepadShake();
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx)

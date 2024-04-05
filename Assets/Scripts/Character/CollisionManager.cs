@@ -18,6 +18,7 @@ public class CollisionManager : MonoBehaviour
             {
                 case true:
                     OnEnemyKilled?.Invoke();
+                    StartCoroutine(_playerMain.GamepadTimedShake(0.1f, 1f));
                     collision.gameObject.GetComponent<EnemyMain>()._ennemyDeath.Die();
                     break;
                 case false:
