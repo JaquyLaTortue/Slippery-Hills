@@ -26,20 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody _rigidbody { get; private set; }
 
-    private bool _isSliding = false;
-
-    public bool IsSliding
-    {
-        get
-        {
-            return _isSliding;
-        }
-        private set
-        {
-            _isSliding = value;
-            IsSlidingEvent?.Invoke(value);
-        }
-    }
+    public bool IsSliding { get; private set; }
 
     [field: SerializeField]
     public PlayerMain PlayerMain { get; private set; }
@@ -47,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     public event Action UpdateJumpAnimation;
     public event Action<bool> UpdateRunningAnimation;
     public event Action<bool> UpdateSlideAnimation;
-    public event Action<bool> IsSlidingEvent;
 
     private void Awake()
     {
@@ -168,7 +154,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if (!_canJump && (_squashSequence == null || !_squashSequence.IsPlaying())) {
+            if (!_canJump && (_squashSequence == null || !_squashSequence.IsPlaying()))
+            {
                 _squashSequence = DOTween.Sequence(transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f)).Play();
             }
             _canJump = true;

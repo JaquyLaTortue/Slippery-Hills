@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 
 public class PlayerVFX : MonoBehaviour
@@ -27,47 +28,66 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField]
     private float _walkingVFXMaxEmissionRate = 10f;
 
-    private void Start() {
+    public event Action<bool> FastSlideEvent;
+
+    private void Start()
+    {
         _trailRenderer.emitting = false;
         _speedVFXMaterial = _speedVFX.GetComponent<Renderer>().material;
     }
 
-    private void FixedUpdate() {
-        if (_playerMain.Movement._rigidbody.velocity.magnitude > 0) {
+    private void FixedUpdate()
+    {
+        if (_playerMain.Movement._rigidbody.velocity.magnitude > 0)
+        {
             // Walking VFX
-            if (_playerMain.Movement._canJump) {
+            if (_playerMain.Movement._canJump)
+            {
                 _walkingVFX.SetActive(true);
-                if (_playerMain.Movement._rigidbody.velocity.magnitude > _walkingVFXMaxEmissionRate) {
+                if (_playerMain.Movement._rigidbody.velocity.magnitude > _walkingVFXMaxEmissionRate)
+                {
                     _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _walkingVFXMaxEmissionRate;
                 }
-                else {
+                else
+                {
                     _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _playerMain.Movement._rigidbody.velocity.magnitude;
 
                 }
             }
 
             // Trail
-            if (_playerMain.Movement._rigidbody.velocity.magnitude > 10) {
+            if (_playerMain.Movement._rigidbody.velocity.magnitude > 10)
+            {
                 _trailRenderer.emitting = true;
-                if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth) {
+                if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth)
+                {
                     _trailRenderer.startWidth = _trailMaxWidth;
                 }
-                else {
+                else
+                {
                     _trailRenderer.startWidth = _playerMain.Movement._rigidbody.velocity.magnitude / 100;
                 }
+                _speedVFXMaterial.SetFloat("_Alpha", _playerMain.Movement._rigidbody.velocity.magnitude / 20);
+                FastSlideEvent?.Invoke(true);
             }
-        } 
-        else {
+            else
+            {
+                _speedVFXMaterial.SetFloat("_Alpha", 0);
+                FastSlideEvent?.Invoke(false);
+                _walkingVFX.SetActive(false);
+            }
+        }
+        else
+        {
             _trailRenderer.emitting = false;
-            _walkingVFX.SetActive(false);
         }
 
-        _speedVFXMaterial.SetFloat("_Alpha", _playerMain.Movement._rigidbody.velocity.magnitude / 20);
 
         _camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10 + _playerMain.Movement._rigidbody.velocity.magnitude / 2;
     }
 
-    public void DeathVFX() {
+    public void DeathVFX()
+    {
         _walkingVFX.SetActive(false);
     }
 }

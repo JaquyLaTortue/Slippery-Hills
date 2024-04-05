@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField]
     private PlayerMain _playerMain;
 
@@ -11,11 +12,16 @@ public class SoundManager : MonoBehaviour
     private DeathZone _deathZone;
 
     [SerializeField]
+    private PlayerVFX _playerVFX;
+
+    [Header("Audio Sources")]
+    [SerializeField]
     private AudioSource _source;
 
     [SerializeField]
     private AudioSource _slideSource;
 
+    [Header("Audio Clips")]
     [SerializeField]
     private AudioClip _killSound;
 
@@ -28,12 +34,14 @@ public class SoundManager : MonoBehaviour
     private int _count = 0;
 
     private Coroutine _resetCount;
+    private Coroutine _fadeInSlide;
+    private Coroutine _fadeOutSlide;
 
     private void Start()
     {
         _playerMain.Collision.OnEnemyKilled += PlayKillSound;
         _deathZone.OnDeathZoneEnemy += PlayExplosionSound;
-        _playerMain.Movement.IsSlidingEvent += PlaySlideSound;
+        _playerVFX.FastSlideEvent += PlaySlideSound;
     }
 
     public void PlayKillSound()
@@ -59,33 +67,55 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySlideSound(bool slideState)
     {
+        Debug.Log($"Slide sound played:{slideState}");
         switch (slideState)
         {
             case true:
                 if (!_slideSource.isPlaying)
                 {
-                    StartCoroutine(FadeIn(_slideSource, 0.5f));
+                    _fadeInSlide = StartCoroutine(FadeIn(_slideSource, 1f));
                     //_slideSource.Play();
                 }
                 break;
             case false:
-                _slideSource.Stop();
+                if (_slideSource.isPlaying && _fadeInSlide == null && _fadeOutSlide == null)
+                {
+                    Debug.Log("Fade out slide sound");
+                    _fadeOutSlide = StartCoroutine(FadeOut(_slideSource, 1f));
+                }
                 break;
         }
     }
 
     private IEnumerator FadeIn(AudioSource source, float duration)
     {
-        float startVolume = 0f;
+        float startTimer = 0f;
 
-        source.volume = startVolume;
+        source.volume = 0;
         source.Play();
 
-        while (source.volume < 1)
+        while (startTimer < duration)
         {
-            source.volume += Time.deltaTime / duration;
+            startTimer += Time.deltaTime;
+            source.volume += startTimer / duration;
             yield return null;
         }
-        Debug.Log("Fade in");
+
+        _fadeInSlide = null;
+    }
+
+    private IEnumerator FadeOut(AudioSource source, float duration)
+    {
+        float startTimer = 0f;
+
+        while (startTimer < duration)
+        {
+            startTimer += Time.deltaTime;
+            source.volume = 1 - startTimer / duration;
+            yield return null;
+        }
+
+        source.Stop();
+        _fadeOutSlide = null;
     }
 }
