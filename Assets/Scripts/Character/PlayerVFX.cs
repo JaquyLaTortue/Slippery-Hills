@@ -35,13 +35,15 @@ public class PlayerVFX : MonoBehaviour
     private void FixedUpdate() {
         if (_playerMain.Movement._rigidbody.velocity.magnitude > 0) {
             // Walking VFX
-            _walkingVFX.SetActive(true);
-            if (_playerMain.Movement._rigidbody.velocity.magnitude > _walkingVFXMaxEmissionRate) {
-                _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _walkingVFXMaxEmissionRate;
-            }
-            else {
-                _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _playerMain.Movement._rigidbody.velocity.magnitude;
+            if (_playerMain.Movement._canJump) {
+                _walkingVFX.SetActive(true);
+                if (_playerMain.Movement._rigidbody.velocity.magnitude > _walkingVFXMaxEmissionRate) {
+                    _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _walkingVFXMaxEmissionRate;
+                }
+                else {
+                    _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _playerMain.Movement._rigidbody.velocity.magnitude;
 
+                }
             }
 
             // Trail

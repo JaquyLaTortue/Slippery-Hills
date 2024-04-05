@@ -1,5 +1,6 @@
+
+using DG.Tweening;
 using System;
-using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,10 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _jumpForce = 5f;
 
-    //[SerializeField]
-    //private Animator _animator;
-
-    private bool _canJump = true;
+    public bool _canJump { get; private set; } = true;
 
     private Vector3 MoveDirection;
     private PhysicMaterial PhysicMat;
@@ -128,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext ctx)
     {
         if (!ctx.started || !_canJump) return;
+        transform.DOPunchScale(new Vector3(0, 1f, 0), 0.5f, 1, 0.5f);
         _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
         PhysicMat.frictionCombine = PhysicMaterialCombine.Minimum;
@@ -154,6 +153,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            if (!_canJump) {
+                transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f);
+            }
             _canJump = true;
         }
     }
