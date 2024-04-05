@@ -66,4 +66,8 @@ public class PlayerVFX : MonoBehaviour
 
         _camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10 + _playerMain.Movement._rigidbody.velocity.magnitude / 2;
     }
+
+    public void DeathVFX() {
+        _walkingVFX.SetActive(false);
+    }
 }

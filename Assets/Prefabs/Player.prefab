@@ -1519,7 +1519,7 @@ GameObject:
   - component: {fileID: 2312063067939030191}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6866,7 +6866,7 @@ GameObject:
   - component: {fileID: 5663615155696041571}
   m_Layer: 6
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6906,6 +6906,7 @@ MonoBehaviour:
   <Death>k__BackingField: {fileID: 1185858319603954718}
   <Collision>k__BackingField: {fileID: 7932345992467239896}
   <VFX>k__BackingField: {fileID: 8428163130962731697}
+  _deathZone: {fileID: 0}
 --- !u!114 &4423547841736755809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6969,6 +6970,7 @@ MonoBehaviour:
   _camera: {fileID: 5057665034605673515}
   _walkingVFX: {fileID: 6285922060884686098}
   _walkingVFXMaxEmissionRate: 10
+  _deathVFX: {fileID: 0}
 --- !u!136 &7231353687824309948
 CapsuleCollider:
   m_ObjectHideFlags: 0

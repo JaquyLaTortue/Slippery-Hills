@@ -40,11 +40,12 @@ public class EnemyDeath : MonoBehaviour
         _enemyMain._enemyMovement._collider.isTrigger = true;
         _sequence = DOTween.Sequence(_enemyMain.transform.DORotate(new Vector3(0, 0, 180), 3f))
             .Append(_enemyMain.transform.DOPunchScale(Vector3.up, 3f, 2));
+        _sequence.OnComplete(() => DeathZoneImpact());
     }
 
     public void DeathZoneImpact()
     {
         Debug.Log("Ennemy is Destroyed");
-        _sequence.OnComplete(() => Destroy(gameObject));
+        Destroy(_enemyMain.gameObject);
     }
 }
