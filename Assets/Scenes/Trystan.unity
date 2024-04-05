@@ -1118,6 +1118,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743698289}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &814344371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8428163130962731697, guid: 6e568b887496a6542b78ae570b2c86e0, type: 3}
+  m_PrefabInstance: {fileID: 1339648681959245766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd9f80837b98ec40835b401761391e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &822477596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,6 +3149,10 @@ PrefabInstance:
       propertyPath: _speedVFX
       value: 
       objectReference: {fileID: 1091627902}
+    - target: {fileID: 8543504971591666345, guid: 6e568b887496a6542b78ae570b2c86e0, type: 3}
+      propertyPath: <VFX>k__BackingField
+      value: 
+      objectReference: {fileID: 814344371}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

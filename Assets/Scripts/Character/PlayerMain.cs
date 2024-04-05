@@ -13,6 +13,9 @@ public class PlayerMain : MonoBehaviour
     [field: SerializeField]
     public CollisionManager Collision { get; private set; }
 
+    [field: SerializeField]
+    public PlayerVFX VFX { get; private set; }
+
     public IEnumerator GamepadTimedShake(float duration, float magnitude) {
         Gamepad.current.SetMotorSpeeds(magnitude / 2, magnitude);
         yield return new WaitForSeconds(duration);

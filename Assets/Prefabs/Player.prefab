@@ -6905,6 +6905,7 @@ MonoBehaviour:
   <Movement>k__BackingField: {fileID: 4423547841736755809}
   <Death>k__BackingField: {fileID: 1185858319603954718}
   <Collision>k__BackingField: {fileID: 7932345992467239896}
+  <VFX>k__BackingField: {fileID: 8428163130962731697}
 --- !u!114 &4423547841736755809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6947,6 +6948,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMain: {fileID: 8543504971591666345}
+  _camera: {fileID: 5057665034605673515}
   _deathBumpForce: 1000
 --- !u!114 &8428163130962731697
 MonoBehaviour:
@@ -7015,7 +7017,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &5663615155696041571
 MonoBehaviour:

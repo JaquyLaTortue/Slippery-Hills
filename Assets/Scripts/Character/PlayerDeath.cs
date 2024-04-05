@@ -1,11 +1,13 @@
+using Cinemachine;
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField]
     private PlayerMain _playerMain;
+    [SerializeField]
+    private CinemachineVirtualCamera _camera;
 
     [SerializeField]
     private float _deathBumpForce = 1000f;
@@ -25,7 +27,9 @@ public class PlayerDeath : MonoBehaviour
     public void Die()
     {
         Debug.Log("Player is dead");
+        _camera.Follow = null;
         _playerMain.Movement.enabled = false;
+        //_playerMain.VFX.enabled = false;
         _rb.velocity = Vector3.zero;
 
         Sequence sequence = DOTween.Sequence();
