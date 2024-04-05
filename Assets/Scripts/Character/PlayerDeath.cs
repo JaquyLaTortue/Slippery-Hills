@@ -30,7 +30,6 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Player is dead");
         _camera.Follow = null;
         _rb.velocity = Vector3.zero;
         _playerMain.Movement.enabled = false;

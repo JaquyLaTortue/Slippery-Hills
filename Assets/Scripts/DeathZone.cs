@@ -29,7 +29,6 @@ public class DeathZone : MonoBehaviour
             OnDeathZoneEnemy?.Invoke();
             _deathZoneEnemyVFX = _enemiesDeathVFXPool.PopVFX();
             _deathZoneEnemyVFX.transform.position = collider.gameObject.transform.position;
-            Debug.Log("Collider position: " + collider.gameObject.transform.position + " VFX position: " + _deathZoneEnemyVFX.transform.position + "VFX Name" + _deathZoneEnemyVFX.gameObject.name);
             _deathZoneEnemyVFX.GetComponent<ParticleSystem>().Play();
             collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();
             StartCoroutine(SendVFXBack());

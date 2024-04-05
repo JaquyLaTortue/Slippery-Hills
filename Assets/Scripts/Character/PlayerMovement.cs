@@ -63,8 +63,6 @@ public class PlayerMovement : MonoBehaviour
         float speedCap = 50;
         if (_rigidbody.velocity.magnitude <= speedCap / 2)
         {
-
-            //Debug.Log(Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2))));
             byte colorValue = (byte)Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2)));
             Color color = new Color32(colorValue, 255, 0, 255);
             _speedText.color = color;
@@ -152,6 +150,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext ctx)
     {
+        if (IsSliding)
+        {
+            MoveDirection = Vector3.zero;
+            return;
+        }
         MoveDirection = new Vector3(ctx.ReadValue<Vector2>().x, 0, 0);
     }
 
