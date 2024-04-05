@@ -28,6 +28,14 @@ public class EnemyMovement : MonoBehaviour
         { Debug.LogError("Rigidbody is missing"); }
     }
 
+    private void Start()
+    {
+        if (_goRight && transform.rotation.y != 90 || !_goRight && transform.rotation.y != -90)
+        {
+            transform.rotation = Quaternion.Euler(0, _goRight ? 90 : -90, 0);
+        }
+    }
+
     private void Update()
     {
         if (!_ennemyMain._ennemyDeath.isDead)
@@ -40,6 +48,15 @@ public class EnemyMovement : MonoBehaviour
             {
                 _rb.velocity = new Vector3(-1 * _speed * Time.deltaTime, _rb.velocity.y, 0);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        {
+            _goRight = !_goRight;
+            transform.rotation = Quaternion.Euler(0, _goRight ? 90 : -90, 0);
         }
     }
 }

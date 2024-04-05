@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 59.304256
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.233714
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalRotation.y
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ennemyMain: {fileID: 337444923780658816}
-  _speed: 0
+  _speed: 500
   _goRight: 1
   <_rb>k__BackingField: {fileID: 0}
   <_collider>k__BackingField: {fileID: 0}

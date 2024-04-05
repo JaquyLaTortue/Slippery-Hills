@@ -143,6 +143,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetSliding()
+    {
+        IsSliding = true;
+    }
+
     public void ResetSliding()
     {
         IsSliding = false;

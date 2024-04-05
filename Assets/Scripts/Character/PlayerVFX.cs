@@ -21,24 +21,39 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera _camera;
 
-    private void Start() {
+    private void Start()
+    {
         _trailRenderer.emitting = false;
         _speedVFXMaterial = _speedVFX.GetComponent<Renderer>().material;
     }
 
-    private void FixedUpdate() {
-        if (_playerMain.Movement.IsSliding) {
+    private void FixedUpdate()
+    {
+        if (_playerMain.Movement.IsSliding)
+        {
             _trailRenderer.emitting = true;
-            if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth) {
+            if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth)
+            {
                 _trailRenderer.startWidth = _trailMaxWidth;
-            } else {
+            }
+            else
+            {
                 _trailRenderer.startWidth = _playerMain.Movement._rigidbody.velocity.magnitude / 100;
             }
-        } else {
+        }
+        else
+        {
             _trailRenderer.emitting = false;
         }
 
-        _speedVFXMaterial.SetFloat("_Alpha", _playerMain.Movement._rigidbody.velocity.magnitude / 20);
+        if (_playerMain.Movement._rigidbody.velocity.magnitude > 10)
+        {
+            _speedVFXMaterial.SetFloat("_Alpha", _playerMain.Movement._rigidbody.velocity.magnitude / 20);
+        }
+        else
+        {
+            _speedVFXMaterial.SetFloat("_Alpha", 0);
+        }
 
         _camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10 + _playerMain.Movement._rigidbody.velocity.magnitude / 2;
     }
