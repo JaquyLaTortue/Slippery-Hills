@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class KillSoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
     [SerializeField]
     private PlayerMain _playerMain;
@@ -64,12 +64,28 @@ public class KillSoundManager : MonoBehaviour
             case true:
                 if (!_slideSource.isPlaying)
                 {
-                    _slideSource.Play();
+                    StartCoroutine(FadeIn(_slideSource, 0.5f));
+                    //_slideSource.Play();
                 }
                 break;
             case false:
                 _slideSource.Stop();
                 break;
         }
+    }
+
+    private IEnumerator FadeIn(AudioSource source, float duration)
+    {
+        float startVolume = 0f;
+
+        source.volume = startVolume;
+        source.Play();
+
+        while (source.volume < 1)
+        {
+            source.volume += Time.deltaTime / duration;
+            yield return null;
+        }
+        Debug.Log("Fade in");
     }
 }
