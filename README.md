@@ -1,0 +1,20 @@
+Feedbacks apportés:
+- Camera Shake (hit ennemi / mort ennemi)
+- Zoom In/Out (en fonction de la vitesse)
+- Retard caméra
+- Particules (Mort du joueur & ennemi / course / Saut / atterrissage / Post Glisse)
+- Trail (en fonction de la vitesse)
+- Effet vitesse (en fonction de la vitesse)
+- Augmentation du pitch du son de "kill" d'ennemi lors d'enchainement
+- Vibrations de manette (Glisse / hit ennemi / mort du joueur)
+- Squash et stretch (Saut et atterrissage)
+- Animation via tween (Mort du joueur / hit ennemi)
+- Animations générales
+- Outline (joueur et ennemis)
+- Changement Couleur des zones glissantes
+- Timer
+- Compteur de vitesse
+- Changement couleur compteur de vitesse et trail en fonction de la vitesse
+- Son (hit ennemi / destroy ennemi / hit joueur / destroy joueur / vitesse)
+- Victoire Défaite
+- Flou de mouvements
