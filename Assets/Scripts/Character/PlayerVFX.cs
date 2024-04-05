@@ -94,7 +94,7 @@ public class PlayerVFX : MonoBehaviour
 
             }
             else {
-                _trailRenderer.startColor = new Color(0, 255, 0);
+                _trailRenderer.startColor = new Color(255, 0, 0);
             }
         }
         else

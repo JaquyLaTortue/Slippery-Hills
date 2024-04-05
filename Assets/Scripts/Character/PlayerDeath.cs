@@ -8,8 +8,6 @@ public class PlayerDeath : MonoBehaviour
     private PlayerMain _playerMain;
 
     [SerializeField]
-    private GameObject _inputHolder;
-    [SerializeField]
     private CinemachineVirtualCamera _camera;
 
     [SerializeField]

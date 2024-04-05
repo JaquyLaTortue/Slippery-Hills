@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             _speedText.color = color;
 
         } else {
-            _speedText.color = new Color(0, 255, 0);
+            _speedText.color = new Color(255, 0, 0);
         }
 
         // Rotate the player according to the ground

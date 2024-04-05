@@ -7,12 +7,12 @@ public class CameraMovement : MonoBehaviour
     private Camera _camera;
 
     [SerializeField]
-    private CollisionManager _collisionManager;
+    private PlayerMain _playerMain;
 
     private void Start()
     {
-        _collisionManager.OnEnemyKilled += ShakeCam;
-        _collisionManager.OnPlayerDeath += ShakeCam;
+        _playerMain.Collision.OnEnemyKilled += ShakeCam;
+        _playerMain.Collision.OnPlayerDeath += ShakeCam;
     }
 
     public void ShakeCam()
