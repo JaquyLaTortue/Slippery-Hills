@@ -16,6 +16,7 @@ public class PlayerDeath : MonoBehaviour
 
     private Collider _collider;
 
+    private Sequence _sequence;
 
     private void Start()
     {
@@ -32,10 +33,10 @@ public class PlayerDeath : MonoBehaviour
         //_playerMain.VFX.enabled = false;
         _rb.velocity = Vector3.zero;
 
-        Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DORotate(new Vector3(0, 180, 0), 1f).OnComplete(() => DeathBump()))
+        _sequence = DOTween.Sequence();
+        _sequence.Append(transform.DORotate(new Vector3(0, 180, 0), 1f).OnComplete(() => DeathBump()))
             .Append(transform.DOPunchScale(Vector3.up, 3f, 2));
-        sequence.Play();
+        _sequence.Play();
     }
 
     private void DeathBump()
@@ -47,6 +48,7 @@ public class PlayerDeath : MonoBehaviour
     public void DeathZoneImpact()
     {
         Debug.Log("Player is Destroyed");
-        Destroy(gameObject);
+        _playerMain.VFX.DeathVFX();
+        _sequence.OnComplete(() => Destroy(gameObject));
     }
 }

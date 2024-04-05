@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalRotation.z
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 240a11973cab60c4fa847cbeffdff0c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -940,6 +940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   _enemyMain: {fileID: 337444923780658816}
+  enemyVFXExplosion: {fileID: 0}
   _bumpForce: 5
 --- !u!54 &6282289421680706432
 Rigidbody:

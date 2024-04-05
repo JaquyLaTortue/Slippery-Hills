@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _jumpForce = 5f;
 
+    private Sequence _squashSequence;
+
     public bool _canJump { get; private set; } = true;
 
     private Vector3 MoveDirection;
@@ -153,8 +155,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if (!_canJump) {
-                transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f);
+            if (!_canJump && (_squashSequence == null || !_squashSequence.IsPlaying())) {
+                _squashSequence = DOTween.Sequence(transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f)).Play();
             }
             _canJump = true;
         }

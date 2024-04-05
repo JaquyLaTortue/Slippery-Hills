@@ -7,18 +7,27 @@ public class DeathZone : MonoBehaviour
 
     public event Action OnDeathZonePlayer;
 
+    [SerializeField]
+    private GameObject _deathZonePlayerVFX;
+    [SerializeField]
+    private GameObject[] _deathZoneEnemiesVFX;
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
             OnDeathZonePlayer?.Invoke();
-            collider.gameObject.GetComponent<PlayerDeath>().DeathZoneImpact();     // Change Die() to DeathZoneImpact()
+            _deathZonePlayerVFX.transform.position = collider.gameObject.transform.position;
+            _deathZonePlayerVFX.GetComponent<ParticleSystem>().Play();
+            collider.gameObject.GetComponent<PlayerDeath>().DeathZoneImpact();
         }
 
         if (collider.gameObject.CompareTag("Enemy"))
         {
             OnDeathZoneEnemy?.Invoke();
-            collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();     // Change Die() to DeathZoneImpact()
+            //_deathZoneEnemyVFX.transform.position = collider.gameObject.transform.position;
+            //_deathZoneEnemyVFX.GetComponent<ParticleSystem>().Play();
+            collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();
         }
     }
 }
