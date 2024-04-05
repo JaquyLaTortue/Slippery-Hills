@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     [field: SerializeField]
     public PlayerMain PlayerMain { get; private set; }
 
+    public bool IsFinished { get; set; }
+
     public event Action UpdateJumpAnimation;
     public event Action<bool> UpdateRunningAnimation;
     public event Action<bool> UpdateSlideAnimation;
@@ -59,20 +61,25 @@ public class PlayerMovement : MonoBehaviour
         int speedValue = (int)_rigidbody.velocity.magnitude;
         _speedText.text = speedValue.ToString();
         float speedCap = 50;
-        if (_rigidbody.velocity.magnitude <= speedCap / 2) {
+        if (_rigidbody.velocity.magnitude <= speedCap / 2)
+        {
 
             //Debug.Log(Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2))));
             byte colorValue = (byte)Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2)));
             Color color = new Color32(colorValue, 255, 0, 255);
             _speedText.color = color;
 
-        } else if (_rigidbody.velocity.magnitude < speedCap) {
+        }
+        else if (_rigidbody.velocity.magnitude < speedCap)
+        {
 
             byte colorValue = (byte)Mathf.RoundToInt(255 * (1 - (_rigidbody.velocity.magnitude / speedCap)));
             Color color = new Color32(255, colorValue, 0, 255);
             _speedText.color = color;
 
-        } else {
+        }
+        else
+        {
             _speedText.color = new Color(255, 0, 0);
         }
 

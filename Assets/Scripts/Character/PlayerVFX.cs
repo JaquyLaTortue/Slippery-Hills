@@ -18,9 +18,8 @@ public class PlayerVFX : MonoBehaviour
     private GameObject _speedVFX;
     private Material _speedVFXMaterial;
 
-    [Header("Camera Zoom Parameters")]
-    [SerializeField]
-    private CinemachineVirtualCamera _camera;
+    [field: SerializeField]
+    public CinemachineVirtualCamera _camera { get; private set; }
 
     [Header("Walking VFX Parameters")]
     [SerializeField]
@@ -79,21 +78,24 @@ public class PlayerVFX : MonoBehaviour
 
             // Trail color
             float speedCap = 50;
-            if (_playerMain.Movement._rigidbody.velocity.magnitude <= speedCap / 2) {
+            if (_playerMain.Movement._rigidbody.velocity.magnitude <= speedCap / 2)
+            {
 
                 byte colorValue = (byte)Mathf.RoundToInt(255 * (_playerMain.Movement._rigidbody.velocity.magnitude / (speedCap / 2)));
                 Color color = new Color32(colorValue, 255, 0, 255);
                 _trailRenderer.startColor = color;
 
             }
-            else if (_playerMain.Movement._rigidbody.velocity.magnitude < speedCap) {
+            else if (_playerMain.Movement._rigidbody.velocity.magnitude < speedCap)
+            {
 
                 byte colorValue = (byte)Mathf.RoundToInt(255 * (1 - (_playerMain.Movement._rigidbody.velocity.magnitude / speedCap)));
                 Color color = new Color32(255, colorValue, 0, 255);
                 _trailRenderer.startColor = color;
 
             }
-            else {
+            else
+            {
                 _trailRenderer.startColor = new Color(255, 0, 0);
             }
         }
@@ -102,8 +104,10 @@ public class PlayerVFX : MonoBehaviour
             _trailRenderer.emitting = false;
         }
 
-
-        _camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10 + _playerMain.Movement._rigidbody.velocity.magnitude / 2;
+        if (!_playerMain.Movement.IsFinished)
+        {
+            _camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_CameraDistance = 10 + _playerMain.Movement._rigidbody.velocity.magnitude / 2;
+        }
     }
 
     public void DeathVFX()
