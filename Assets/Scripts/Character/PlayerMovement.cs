@@ -58,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
         // Update the speed text
         _speedText.text = _rigidbody.velocity.magnitude.ToString("F2");
         float speedCap = 50;
-        if (_rigidbody.velocity.magnitude < speedCap / 2) {
+        if (_rigidbody.velocity.magnitude < speedCap / 2)
+        {
 
         }
         _speedText.color = _rigidbody.velocity.magnitude > _speed ? Color.red : Color.green;
@@ -138,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext ctx)
     {
         if (!ctx.started || !_canJump) return;
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
         transform.DOPunchScale(new Vector3(0, 1f, 0), 0.5f, 1, 0.5f);
         _rigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
         _canJump = false;
@@ -167,6 +169,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!_canJump && (_squashSequence == null || !_squashSequence.IsPlaying()))
             {
+                gameObject.transform.localScale = new Vector3(1, 1, 1);
                 _squashSequence = DOTween.Sequence(transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f)).Play();
             }
             _canJump = true;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -13,21 +14,7 @@ public class PlayerAnimation : MonoBehaviour
         _playerMain.Movement.UpdateJumpAnimation += JumpAnimation;
         _playerMain.Movement.UpdateSlideAnimation += SlideAnimation;
         _playerMain.Movement.UpdateRunningAnimation += RunningAnimation;
-    }
-
-    private void JumpAnimation()
-    {
-        _animator.SetTrigger("IsJumping");
-    }
-
-    private void SlideAnimation(bool isSliding)
-    {
-        _animator.SetBool("IsSliding", isSliding);
-    }
-
-    private void RunningAnimation(bool isRunning)
-    {
-        _animator.SetBool("IsRunning", isRunning);
+        _playerMain.Collision.OnPlayerDeath += IdleAnimation;
     }
 
     public void AssertIsSliding()
@@ -43,5 +30,24 @@ public class PlayerAnimation : MonoBehaviour
     public void ResetFrictions()
     {
         _playerMain.Movement.ResetFrictions();
+    }
+    private void JumpAnimation()
+    {
+        _animator.SetTrigger("IsJumping");
+    }
+
+    private void SlideAnimation(bool isSliding)
+    {
+        _animator.SetBool("IsSliding", isSliding);
+    }
+
+    private void RunningAnimation(bool isRunning)
+    {
+        _animator.SetBool("IsRunning", isRunning);
+    }
+
+    private void IdleAnimation()
+    {
+        _animator.SetBool("IsRunning", false);
     }
 }
