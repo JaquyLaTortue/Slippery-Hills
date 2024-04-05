@@ -26,9 +26,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip _explosionSound;
 
-    [SerializeField]
-    private AudioClip _slideSound;
-
     private int _count = 0;
 
     private Coroutine _resetCount;

@@ -6919,9 +6919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdb381c068ff8344bd1dc03af53185b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 350
+  _speedText: {fileID: 0}
+  _speed: 300
   _jumpForce: 600
-  <IsSliding>k__BackingField: 0
   <PlayerMain>k__BackingField: {fileID: 8543504971591666345}
 --- !u!114 &7932345992467239896
 MonoBehaviour:
@@ -6949,6 +6949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMain: {fileID: 8543504971591666345}
+  _inputHolder: {fileID: 0}
   _camera: {fileID: 5057665034605673515}
   _deathBumpForce: 1000
 --- !u!114 &8428163130962731697
@@ -6970,7 +6971,6 @@ MonoBehaviour:
   _camera: {fileID: 5057665034605673515}
   _walkingVFX: {fileID: 6285922060884686098}
   _walkingVFXMaxEmissionRate: 10
-  _deathVFX: {fileID: 0}
 --- !u!136 &7231353687824309948
 CapsuleCollider:
   m_ObjectHideFlags: 0
