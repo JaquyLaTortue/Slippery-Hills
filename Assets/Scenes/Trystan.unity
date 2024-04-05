@@ -713,6 +713,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d51f988c8a8ca0449a80841502dcf31, type: 3}
+--- !u!1 &277451226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3356051644390945943, guid: f91a23e2377803d44b7f9e61d8ef8ebd, type: 3}
+  m_PrefabInstance: {fileID: 6745128669634394215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &277451228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277451226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90815339bc561bf4382f921486624d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemiesVFX:
+  - {fileID: 2122952023}
+  - {fileID: 956073648}
+  - {fileID: 2031250}
+  - {fileID: 191498582}
+  - {fileID: 655108071}
+  - {fileID: 1292810883}
+  - {fileID: 523409840}
+  - {fileID: 1473208496}
+  - {fileID: 600388665}
+  - {fileID: 114988699}
 --- !u!1 &464811421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,6 +3298,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1833217583}
     - target: {fileID: 7774788657827918602, guid: f91a23e2377803d44b7f9e61d8ef8ebd, type: 3}
+      propertyPath: _enemiesDeathVFXPool
+      value: 
+      objectReference: {fileID: 277451228}
+    - target: {fileID: 7774788657827918602, guid: f91a23e2377803d44b7f9e61d8ef8ebd, type: 3}
       propertyPath: _deathZoneEnemiesVFX.Array.size
       value: 10
       objectReference: {fileID: 0}
@@ -3316,7 +3348,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3356051644390945943, guid: f91a23e2377803d44b7f9e61d8ef8ebd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 277451228}
   m_SourcePrefab: {fileID: 100100000, guid: f91a23e2377803d44b7f9e61d8ef8ebd, type: 3}
 --- !u!1001 &6889209455263656082
 PrefabInstance:

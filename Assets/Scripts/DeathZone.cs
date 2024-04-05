@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DeathZone : MonoBehaviour
@@ -10,7 +11,8 @@ public class DeathZone : MonoBehaviour
     [SerializeField]
     private GameObject _deathZonePlayerVFX;
     [SerializeField]
-    private GameObject[] _deathZoneEnemiesVFX;
+    private EnemiesDeathVFXPool _enemiesDeathVFXPool;
+    private GameObject _deathZoneEnemyVFX;
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -20,14 +22,22 @@ public class DeathZone : MonoBehaviour
             _deathZonePlayerVFX.transform.position = collider.gameObject.transform.position;
             _deathZonePlayerVFX.GetComponent<ParticleSystem>().Play();
             collider.gameObject.GetComponent<PlayerDeath>().DeathZoneImpact();
-        }
+        }   
 
         if (collider.gameObject.CompareTag("Enemy"))
         {
             OnDeathZoneEnemy?.Invoke();
-            //_deathZoneEnemyVFX.transform.position = collider.gameObject.transform.position;
-            //_deathZoneEnemyVFX.GetComponent<ParticleSystem>().Play();
+            _deathZoneEnemyVFX = _enemiesDeathVFXPool.PopVFX();
+            _deathZoneEnemyVFX.transform.position = collider.gameObject.transform.position;
+            Debug.Log("Collider position: " + collider.gameObject.transform.position + " VFX position: " + _deathZoneEnemyVFX.transform.position);
+            _deathZoneEnemyVFX.GetComponent<ParticleSystem>().Play();
             collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();
+            StartCoroutine(SendVFXBack());
         }
+    }
+
+    private IEnumerator SendVFXBack() {
+        yield return new WaitForSeconds(3.0f);
+        _enemiesDeathVFXPool.PushVFX(_deathZoneEnemyVFX);
     }
 }
