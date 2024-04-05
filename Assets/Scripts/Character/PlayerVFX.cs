@@ -76,6 +76,26 @@ public class PlayerVFX : MonoBehaviour
                 FastSlideEvent?.Invoke(false);
                 _walkingVFX.SetActive(false);
             }
+
+            // Trail color
+            float speedCap = 50;
+            if (_playerMain.Movement._rigidbody.velocity.magnitude <= speedCap / 2) {
+
+                byte colorValue = (byte)Mathf.RoundToInt(255 * (_playerMain.Movement._rigidbody.velocity.magnitude / (speedCap / 2)));
+                Color color = new Color32(colorValue, 255, 0, 255);
+                _trailRenderer.startColor = color;
+
+            }
+            else if (_playerMain.Movement._rigidbody.velocity.magnitude < speedCap) {
+
+                byte colorValue = (byte)Mathf.RoundToInt(255 * (1 - (_playerMain.Movement._rigidbody.velocity.magnitude / speedCap)));
+                Color color = new Color32(255, colorValue, 0, 255);
+                _trailRenderer.startColor = color;
+
+            }
+            else {
+                _trailRenderer.startColor = new Color(0, 255, 0);
+            }
         }
         else
         {

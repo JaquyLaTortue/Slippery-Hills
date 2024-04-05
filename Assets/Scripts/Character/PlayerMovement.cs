@@ -56,12 +56,25 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Update the speed text
-        _speedText.text = _rigidbody.velocity.magnitude.ToString("F2");
+        int speedValue = (int)_rigidbody.velocity.magnitude;
+        _speedText.text = speedValue.ToString();
         float speedCap = 50;
-        if (_rigidbody.velocity.magnitude < speedCap / 2) {
+        if (_rigidbody.velocity.magnitude <= speedCap / 2) {
 
+            //Debug.Log(Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2))));
+            byte colorValue = (byte)Mathf.RoundToInt(255 * (_rigidbody.velocity.magnitude / (speedCap / 2)));
+            Color color = new Color32(colorValue, 255, 0, 255);
+            _speedText.color = color;
+
+        } else if (_rigidbody.velocity.magnitude < speedCap) {
+
+            byte colorValue = (byte)Mathf.RoundToInt(255 * (1 - (_rigidbody.velocity.magnitude / speedCap)));
+            Color color = new Color32(255, colorValue, 0, 255);
+            _speedText.color = color;
+
+        } else {
+            _speedText.color = new Color(0, 255, 0);
         }
-        _speedText.color = _rigidbody.velocity.magnitude > _speed ? Color.red : Color.green;
 
         // Rotate the player according to the ground
         Ray ray = new Ray(transform.position, -transform.up * 2);

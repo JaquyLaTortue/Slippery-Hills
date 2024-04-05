@@ -147,6 +147,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExplosion (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -221,6 +229,14 @@ PrefabInstance:
     - target: {fileID: 1185666837420732291, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_Name
       value: EnemyExplosion (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -297,6 +313,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExplosion (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -371,6 +395,14 @@ PrefabInstance:
     - target: {fileID: 1185666837420732291, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_Name
       value: EnemyExplosion (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -530,6 +562,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExplosion (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -604,6 +644,14 @@ PrefabInstance:
     - target: {fileID: 1185666837420732291, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_Name
       value: EnemyExplosion (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -680,6 +728,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExplosion (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -754,6 +810,14 @@ PrefabInstance:
     - target: {fileID: 1185666837420732291, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_Name
       value: EnemyExplosion (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -830,6 +894,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyExplosion (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -904,6 +976,14 @@ PrefabInstance:
     - target: {fileID: 1185666837420732291, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_Name
       value: EnemyExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4617378438319003343, guid: 1058d7f9119534643978508178e911f4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4990036088962620199, guid: 1058d7f9119534643978508178e911f4, type: 3}
       propertyPath: m_LocalScale.x
