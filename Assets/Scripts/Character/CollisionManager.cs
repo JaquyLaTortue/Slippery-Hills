@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class CollisionManager : MonoBehaviour
             {
                 case true:
                     OnEnemyKilled?.Invoke();
-                    StartCoroutine(_playerMain.GamepadTimedShake(0.1f, 1f));
+                    if (Gamepad.current != null) { StartCoroutine(_playerMain.GamepadTimedShake(0.1f, 1f)); }
                     collision.gameObject.GetComponent<EnemyMain>()._ennemyDeath.Die();
                     break;
                 case false:

@@ -24,9 +24,20 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody _rigidbody { get; private set; }
 
+    private bool _isSliding = false;
 
-    [field: SerializeField]
-    public bool IsSliding { get; private set; } = false;
+    public bool IsSliding
+    {
+        get
+        {
+            return _isSliding;
+        }
+        private set
+        {
+            _isSliding = value;
+            IsSlidingEvent?.Invoke(value);
+        }
+    }
 
     [field: SerializeField]
     public PlayerMain PlayerMain { get; private set; }
@@ -34,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action UpdateJumpAnimation;
     public event Action<bool> UpdateRunningAnimation;
     public event Action<bool> UpdateSlideAnimation;
-
+    public event Action<bool> IsSlidingEvent;
 
     private void Awake()
     {
@@ -103,7 +114,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Controls gamepad vibrations
-        if (_rigidbody.velocity.magnitude > 0) {
+        if (_rigidbody.velocity.magnitude > 0 && Gamepad.current != null)
+        {
             if (IsSliding)
             {
                 PlayerMain.GamepadShake(_rigidbody.velocity.magnitude / 100);
@@ -113,7 +125,8 @@ public class PlayerMovement : MonoBehaviour
                 PlayerMain.StopGamepadShake();
             }
         }
-        else {
+        else if (Gamepad.current != null)
+        {
             PlayerMain.StopGamepadShake();
         }
     }
@@ -153,7 +166,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if (!_canJump) {
+            if (!_canJump)
+            {
                 transform.DOPunchScale(new Vector3(0, -0.5f, 0), 0.5f, 1, 0.5f);
             }
             _canJump = true;

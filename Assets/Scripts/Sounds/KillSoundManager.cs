@@ -14,10 +14,16 @@ public class KillSoundManager : MonoBehaviour
     private AudioSource _source;
 
     [SerializeField]
+    private AudioSource _slideSource;
+
+    [SerializeField]
     private AudioClip _killSound;
 
     [SerializeField]
     private AudioClip _explosionSound;
+
+    [SerializeField]
+    private AudioClip _slideSound;
 
     private int _count = 0;
 
@@ -27,6 +33,7 @@ public class KillSoundManager : MonoBehaviour
     {
         _playerMain.Collision.OnEnemyKilled += PlayKillSound;
         _deathZone.OnDeathZoneEnemy += PlayExplosionSound;
+        _playerMain.Movement.IsSlidingEvent += PlaySlideSound;
     }
 
     public void PlayKillSound()
@@ -48,5 +55,21 @@ public class KillSoundManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         _count = 0;
         _source.pitch = 1;
+    }
+
+    private void PlaySlideSound(bool slideState)
+    {
+        switch (slideState)
+        {
+            case true:
+                if (!_slideSource.isPlaying)
+                {
+                    _slideSource.Play();
+                }
+                break;
+            case false:
+                _slideSource.Stop();
+                break;
+        }
     }
 }
