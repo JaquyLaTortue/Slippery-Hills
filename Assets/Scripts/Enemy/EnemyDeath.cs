@@ -34,7 +34,6 @@ public class EnemyDeath : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Ennemy is dead");
         _rb.AddForce(Vector3.up * _bumpForce, ForceMode.Impulse);
         _enemyMain._enemyMovement._collider.isTrigger = true;
         _sequence = DOTween.Sequence(_enemyMain.transform.DORotate(new Vector3(0, 0, 180), 3f))
@@ -43,7 +42,6 @@ public class EnemyDeath : MonoBehaviour
 
     public void DeathZoneImpact()
     {
-        Debug.Log("Ennemy is Destroyed");
         Destroy(_enemyMain.gameObject);
     }
 }

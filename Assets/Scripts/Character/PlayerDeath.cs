@@ -6,6 +6,9 @@ public class PlayerDeath : MonoBehaviour
 {
     [SerializeField]
     private PlayerMain _playerMain;
+
+    [SerializeField]
+    private GameObject _inputHolder;
     [SerializeField]
     private CinemachineVirtualCamera _camera;
 
@@ -18,6 +21,8 @@ public class PlayerDeath : MonoBehaviour
 
     private Sequence _sequence;
 
+    public bool isDead { get; private set; } = false;
+
     private void Start()
     {
         _rb = _playerMain.Movement._rigidbody;
@@ -29,10 +34,9 @@ public class PlayerDeath : MonoBehaviour
     {
         Debug.Log("Player is dead");
         _camera.Follow = null;
-        _playerMain.Movement.enabled = false;
-        //_playerMain.VFX.enabled = false;
         _rb.velocity = Vector3.zero;
-
+        _playerMain.Movement.enabled = false;
+        _playerMain.VFX.enabled = false;
         _sequence = DOTween.Sequence();
         _sequence.Append(transform.DORotate(new Vector3(0, 180, 0), 1f).OnComplete(() => DeathBump()))
             .Append(transform.DOPunchScale(Vector3.up, 3f, 2));
@@ -47,7 +51,6 @@ public class PlayerDeath : MonoBehaviour
 
     public void DeathZoneImpact()
     {
-        Debug.Log("Player is Destroyed");
         _playerMain.VFX.DeathVFX();
         _sequence.OnComplete(() => Destroy(gameObject));
     }

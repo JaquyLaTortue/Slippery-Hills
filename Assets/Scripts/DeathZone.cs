@@ -22,21 +22,22 @@ public class DeathZone : MonoBehaviour
             _deathZonePlayerVFX.transform.position = collider.gameObject.transform.position;
             _deathZonePlayerVFX.GetComponent<ParticleSystem>().Play();
             collider.gameObject.GetComponent<PlayerDeath>().DeathZoneImpact();
-        }   
+        }
 
         if (collider.gameObject.CompareTag("Enemy"))
         {
             OnDeathZoneEnemy?.Invoke();
             _deathZoneEnemyVFX = _enemiesDeathVFXPool.PopVFX();
             _deathZoneEnemyVFX.transform.position = collider.gameObject.transform.position;
-            Debug.Log("Collider position: " + collider.gameObject.transform.position + " VFX position: " + _deathZoneEnemyVFX.transform.position);
+            Debug.Log("Collider position: " + collider.gameObject.transform.position + " VFX position: " + _deathZoneEnemyVFX.transform.position + "VFX Name" + _deathZoneEnemyVFX.gameObject.name);
             _deathZoneEnemyVFX.GetComponent<ParticleSystem>().Play();
             collider.gameObject.GetComponent<EnemyDeath>().DeathZoneImpact();
             StartCoroutine(SendVFXBack());
         }
     }
 
-    private IEnumerator SendVFXBack() {
+    private IEnumerator SendVFXBack()
+    {
         yield return new WaitForSeconds(3.0f);
         _enemiesDeathVFXPool.PushVFX(_deathZoneEnemyVFX);
     }

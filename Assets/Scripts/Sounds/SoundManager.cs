@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SoundManager : MonoBehaviour
 {
@@ -10,9 +11,6 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private DeathZone _deathZone;
-
-    [SerializeField]
-    private PlayerVFX _playerVFX;
 
     [Header("Audio Sources")]
     [SerializeField]
@@ -40,8 +38,11 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         _playerMain.Collision.OnEnemyKilled += PlayKillSound;
+        _playerMain.VFX.FastSlideEvent += PlaySlideSound;
+        _playerMain.Collision.OnPlayerDeath += PlayExplosionSound;
+        _playerMain.Collision.OnPlayerDeath += StopSlideSound;
+
         _deathZone.OnDeathZoneEnemy += PlayExplosionSound;
-        _playerVFX.FastSlideEvent += PlaySlideSound;
     }
 
     public void PlayKillSound()
@@ -49,7 +50,6 @@ public class SoundManager : MonoBehaviour
         _count++;
         _source.pitch = 1 + _count * 0.1f;
         _resetCount = StartCoroutine(ResetCount());
-        Debug.Log("Kill sound played");
         _source.PlayOneShot(_killSound);
     }
 
@@ -65,22 +65,19 @@ public class SoundManager : MonoBehaviour
         _source.pitch = 1;
     }
 
-    private void PlaySlideSound(bool slideState)
+    private void PlaySlideSound(bool slideState = false)
     {
-        Debug.Log($"Slide sound played:{slideState}");
         switch (slideState)
         {
             case true:
-                if (!_slideSource.isPlaying)
+                if (!_playerMain.Death.isDead && !_slideSource.isPlaying)
                 {
                     _fadeInSlide = StartCoroutine(FadeIn(_slideSource, 1f));
-                    //_slideSource.Play();
                 }
                 break;
             case false:
                 if (_slideSource.isPlaying && _fadeInSlide == null && _fadeOutSlide == null)
                 {
-                    Debug.Log("Fade out slide sound");
                     _fadeOutSlide = StartCoroutine(FadeOut(_slideSource, 1f));
                 }
                 break;
@@ -91,7 +88,6 @@ public class SoundManager : MonoBehaviour
     {
         float startTimer = 0f;
 
-        source.volume = 0;
         source.Play();
 
         while (startTimer < duration)
@@ -104,6 +100,14 @@ public class SoundManager : MonoBehaviour
         _fadeInSlide = null;
     }
 
+    private void StopSlideSound()
+    {
+        if (_fadeOutSlide == null)
+        {
+            _fadeOutSlide = StartCoroutine(FadeOut(_slideSource, 1f));
+        }
+    }
+
     private IEnumerator FadeOut(AudioSource source, float duration)
     {
         float startTimer = 0f;
@@ -111,7 +115,7 @@ public class SoundManager : MonoBehaviour
         while (startTimer < duration)
         {
             startTimer += Time.deltaTime;
-            source.volume = 1 - startTimer / duration;
+            source.volume -= 1 - startTimer / duration;
             yield return null;
         }
 

@@ -23,6 +23,7 @@ public class CollisionManager : MonoBehaviour
                     collision.gameObject.GetComponent<EnemyMain>()._ennemyDeath.Die();
                     break;
                 case false:
+
                     OnPlayerDeath?.Invoke();
                     break;
             }

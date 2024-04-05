@@ -922,7 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ennemyMain: {fileID: 337444923780658816}
-  _speed: 0
+  _speed: 200
   _goRight: 1
   <_rb>k__BackingField: {fileID: 0}
   <_collider>k__BackingField: {fileID: 0}
@@ -940,7 +940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   _enemyMain: {fileID: 337444923780658816}
-  enemyVFXExplosion: {fileID: 0}
   _bumpForce: 5
 --- !u!54 &6282289421680706432
 Rigidbody:
