@@ -19,26 +19,32 @@ public class PlayerMain : MonoBehaviour
     [SerializeField]
     private DeathZone _deathZone;
 
-    private void Start() {
+    private void Start()
+    {
         _deathZone.OnDeathZonePlayer += ShakeWhenExplosion;
         _deathZone.OnDeathZoneEnemy += ShakeWhenExplosion;
     }
 
-    public IEnumerator GamepadTimedShake(float duration, float magnitude) {
+    public IEnumerator GamepadTimedShake(float duration, float magnitude)
+    {
         Gamepad.current.SetMotorSpeeds(magnitude, magnitude);
         yield return new WaitForSeconds(duration);
         Gamepad.current.SetMotorSpeeds(0, 0);
     }
 
-    public void GamepadShake(float magnitude) {
+    public void GamepadShake(float magnitude)
+    {
         Gamepad.current.SetMotorSpeeds(magnitude / 2, magnitude);
     }
 
-    public void StopGamepadShake() {
+    public void StopGamepadShake()
+    {
         Gamepad.current.SetMotorSpeeds(0, 0);
     }
 
-    public void ShakeWhenExplosion() {
+    public void ShakeWhenExplosion()
+    {
+        if (Gamepad.current == null) return;
         StartCoroutine(GamepadTimedShake(0.5f, 1f));
     }
 }
