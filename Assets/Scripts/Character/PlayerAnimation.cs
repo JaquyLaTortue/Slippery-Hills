@@ -30,6 +30,11 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool("IsRunning", isRunning);
     }
 
+    public void AssertIsSliding()
+    {
+        _playerMain.Movement.SetSliding();
+    }
+
     public void EndSlideAnim()
     {
         _playerMain.Movement.ResetSliding();
