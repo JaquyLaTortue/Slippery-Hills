@@ -21,21 +21,43 @@ public class PlayerVFX : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera _camera;
 
+    [Header("Walking VFX Parameters")]
+    [SerializeField]
+    private GameObject _walkingVFX;
+    [SerializeField]
+    private float _walkingVFXMaxEmissionRate = 10f;
+
     private void Start() {
         _trailRenderer.emitting = false;
         _speedVFXMaterial = _speedVFX.GetComponent<Renderer>().material;
     }
 
     private void FixedUpdate() {
-        if (_playerMain.Movement.IsSliding) {
-            _trailRenderer.emitting = true;
-            if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth) {
-                _trailRenderer.startWidth = _trailMaxWidth;
-            } else {
-                _trailRenderer.startWidth = _playerMain.Movement._rigidbody.velocity.magnitude / 100;
+        if (_playerMain.Movement._rigidbody.velocity.magnitude > 0) {
+            // Walking VFX
+            _walkingVFX.SetActive(true);
+            if (_playerMain.Movement._rigidbody.velocity.magnitude > _walkingVFXMaxEmissionRate) {
+                _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _walkingVFXMaxEmissionRate;
             }
-        } else {
+            else {
+                _walkingVFX.GetComponent<ParticleSystem>().emissionRate = _playerMain.Movement._rigidbody.velocity.magnitude;
+
+            }
+
+            // Trail
+            if (_playerMain.Movement._rigidbody.velocity.magnitude > 10) {
+                _trailRenderer.emitting = true;
+                if (_playerMain.Movement._rigidbody.velocity.magnitude / 100 > _trailMaxWidth) {
+                    _trailRenderer.startWidth = _trailMaxWidth;
+                }
+                else {
+                    _trailRenderer.startWidth = _playerMain.Movement._rigidbody.velocity.magnitude / 100;
+                }
+            }
+        } 
+        else {
             _trailRenderer.emitting = false;
+            _walkingVFX.SetActive(false);
         }
 
         _speedVFXMaterial.SetFloat("_Alpha", _playerMain.Movement._rigidbody.velocity.magnitude / 20);
