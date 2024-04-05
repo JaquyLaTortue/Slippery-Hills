@@ -1,6 +1,7 @@
 
 using DG.Tweening;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,10 +10,12 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI _speedText;
 
     [Header("Movement Settings")]
     [SerializeField]
-    private float _maxSpeed = 100f;
+    private float _speed = 100f;
 
     [SerializeField]
     private float _jumpForce = 5f;
@@ -62,9 +65,17 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!IsSliding)
             {
-                _rigidbody.velocity = new Vector3(MoveDirection.x * _maxSpeed * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
+                _rigidbody.velocity = new Vector3(MoveDirection.x * _speed * Time.deltaTime, _rigidbody.velocity.y, _rigidbody.velocity.z);
             }
         }
+
+        // Update the speed text
+        _speedText.text = _rigidbody.velocity.magnitude.ToString("F2");
+        float speedCap = 50;
+        if (_rigidbody.velocity.magnitude < speedCap / 2) {
+
+        }
+        _speedText.color = _rigidbody.velocity.magnitude > _speed ? Color.red : Color.green;
 
         // Rotate the player according to the ground
         Ray ray = new Ray(transform.position, -transform.up * 2);
